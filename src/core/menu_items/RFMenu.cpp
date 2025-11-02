@@ -2,9 +2,11 @@
 #include "core/display.h"
 #include "core/settings.h"
 #include "core/utils.h"
+#include "modules/rf/lora_sniffer.h"
 #include "modules/rf/record.h"
 #include "modules/rf/rf_bruteforce.h"
 #include "modules/rf/rf_jammer.h"
+#include "modules/rf/rf_jammer_adv.h"
 #include "modules/rf/rf_listen.h"
 #include "modules/rf/rf_scan.h"
 #include "modules/rf/rf_send.h"
@@ -22,9 +24,11 @@ void RFMenu::optionsMenu() {
 #if defined(BUZZ_PIN) or defined(HAS_NS4168_SPKR) and defined(RF_LISTEN_H)
         {"Listen",          rf_listen                 }, // dev_eclipse
 #endif
+        {"LoRa Sniffer",    lora_sniffer_menu         }, // LoRa packet capture
         {"Bruteforce",      rf_bruteforce             }, // dev_eclipse
         {"Jammer Itmt",     [=]() { RFJammer(false); }},
         {"Jammer Full",     [=]() { RFJammer(true); } },
+        {"Jammer Advanced", rf_jammer_advanced_menu   }, // Advanced jammers
         {"Config",          [=]() { configMenu(); }   },
     };
     addOptionToMainMenu();

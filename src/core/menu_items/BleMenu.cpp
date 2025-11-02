@@ -5,6 +5,7 @@
 #include "modules/ble/ble_common.h"
 #include "modules/ble/ble_ninebot.h"
 #include "modules/ble/ble_spam.h"
+#include "modules/ble/tracker_detect.h"
 #include <globals.h>
 
 void BleMenu::optionsMenu() {
@@ -23,6 +24,7 @@ void BleMenu::optionsMenu() {
     options.push_back({"Media Cmds", [=]() { MediaCommands(hid_ble, true); }});
 #if !defined(LITE_VERSION)
     options.push_back({"BLE Scan", ble_scan});
+    options.push_back({"Tracker Detect", tracker_detect_menu});
     options.push_back({"iBeacon", [=]() { ibeacon(); }});
     options.push_back({"Bad BLE", [=]() { ducky_setup(hid_ble, true); }});
 #endif
